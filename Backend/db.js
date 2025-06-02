@@ -3,7 +3,7 @@ const { email } = require("zod/v4");
 
 const MONGO_URL;
 
-async function connectDB(){
+async function connectDB( ){
     try{
         await mongoose.connect(MONGO_URL);
         console.log("Connected to mongodb");
