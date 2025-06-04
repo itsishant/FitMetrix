@@ -15,8 +15,8 @@ const Home = () => {
         <div>
             <div className="text-center text-6xl">
                 <div className="mt-2 mb-6">
-                <span className="font-extrabold"> Fit </span>
-                <span className="font-bold  "> Metrix</span>
+                <span className="font-Poppin"> Fit </span>
+                <span className="font-Poppin text-violet-700 "> Metrix</span>
                 </div>
             </div>
 
@@ -24,7 +24,7 @@ const Home = () => {
             <div className="flex  items-center gap-10 ">
                 <img src="fitness.jpg" className="w-220 border-2 rounded-xl h-169 ml-3" alt="" />
                <div className="border p-10 rounded-4xl shadow-lg w-[500px] h-[520px]">
-                    <h2 className="text-5xl font-bold mb-22 text-center">Sign Up
+                    <h2 className="text-5xl font-Poppin mb-22 text-center">Sign Up
                     </h2>
                     <form className="flex flex-col gap-8">
                         <input onChange={(e) => {

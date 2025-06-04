@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { email } = require("zod/v4");
-
 async function connectDB(){
     try{
         await mongoose.connect(MONGO_URL);

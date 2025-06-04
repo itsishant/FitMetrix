@@ -1,1 +1,19 @@
 @import "tailwindcss";
+@font-face {
+    font-family: Poppin;
+    src: url("../src/assets/fonts/Poppins-ExtraBold.ttf");
+}
+
+@font-face {
+    font-family: PoppinBold;
+    src: url("../src/assets/fonts/Poppins-Bold.ttf");
+}
+
+
+@theme{
+    --font-Poppin: Poppin, "hello"
+}
+
+@theme{
+    --font-Poppin: PoppinBold, "PoppinBold"
+}
