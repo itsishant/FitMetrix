@@ -2,10 +2,46 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml"  />
+    <link rel="icon" type="image/svg+xml" />
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FITMETRIX</title>
+    <style>
+      @keyframes slideLeft {
+        from {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes borderPulse {
+  0% {
+    border-color: #7c3aed;
+  }
+  50% {
+    border-color: #a78bfa;
+  }
+  100% {
+    border-color: #7c3aed;
+  }
+}
+
+    </style>
   </head>
   <body>
     <div id="root"></div>
