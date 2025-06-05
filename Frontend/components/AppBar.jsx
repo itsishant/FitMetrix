@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom"
+import { Workout } from "../pages/Workout";
+
 export const AppBar = () => {
+    const navigate = useNavigate();
     return(
         <div className="flex justify-between items-center h-22 bg-white-600 shadow-2xl border-3 border-violet-600 rounded-4xl mt-4 ml-2 mr-2 shadow--100">
             <div className="m-6 text-5xl flex space-x-2">
@@ -7,19 +11,27 @@ export const AppBar = () => {
             </div>
 
             <div className="flex justify-between space-x-8 m-6">
-                <div className="text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 ">
-                   <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl" >Home</button>
+                <div className="text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 ">
+                   <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl">Home</button>
                 </div>
                 <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
-                   <button className="cursor-pointer  hover:bg-violet-400 p-2 rounded-2xl ">Workouts</button>
+                   <button className="cursor-pointer  hover:bg-violet-400 p-2 rounded-2xl "  onClick={() => {
+                    setTimeout(() => {
+                        navigate("/dashboard/workout")
+                    },1000)
+                   }}>Workouts</button>
                 </div>
-                <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
-                     <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl " >Diet Plan</button>
+                <div className="text-center text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
+                     <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl " onClick={() => {
+                        setTimeout(() => {
+                            navigate("/dashboard/dietplan")
+                        },1000)
+                     }} >Diet Plan</button>
                 </div>
-                <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
+                <div className="text-center text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
                      <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl " >Contact Us</button>
                 </div>
-                <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
+                <div className="text-center text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
                    <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl " >AI Assistant</button>
                 </div>
             </div>
