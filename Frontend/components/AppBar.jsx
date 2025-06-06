@@ -17,7 +17,7 @@ export const AppBar = () => {
                 <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
                    <button className="cursor-pointer  hover:bg-violet-400 p-2 rounded-2xl "  onClick={() => {
                     setTimeout(() => {
-                        navigate("/dashboard/workout")
+                        navigate("/dashboard/workout");
                     },1000)
                    }}>Workouts</button>
                 </div>
