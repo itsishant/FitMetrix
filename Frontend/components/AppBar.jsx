@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom"
 import { Workout } from "../pages/Workout";
+import { PhotoDashboard } from "./PhotoDashboard";
 
 export const AppBar = () => {
     const navigate = useNavigate();
+
     return(
-        <div className="flex justify-between items-center h-22 bg-white-600 shadow-2xl border-3 border-violet-600 rounded-4xl mt-4 ml-2 mr-2 shadow--100">
-            <div className="m-6 text-5xl flex space-x-2">
+<div className="fixed top-1 w-[94%] ml-10 z-50 flex justify-between items-center h-20 bg-slate-300 border-3 border-violet-600 rounded-3xl px-6">
+<div className="m-6 text-5xl flex space-x-2">
             
                 <p className="font-Poppin"> Fit</p> 
                 <p className="text-violet-700 font-Poppin"> Metrix</p>

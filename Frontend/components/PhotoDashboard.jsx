@@ -2,7 +2,7 @@ import Typewriter from "typewriter-effect";
 
 export const PhotoDashboard = () => {
     return (
-        <div className="flex bg-white mt px-5 "  >
+        <div className="flex bg-gradient-to-r from-slate-300 to-slate-300 min-h-screen mt-18 px-5 "  >
             <div className="flex-1 mt-10 "
             style={{
     animation: "slideLeft 1.4s ease-out forwards",
