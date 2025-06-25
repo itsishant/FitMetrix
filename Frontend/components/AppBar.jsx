@@ -15,7 +15,11 @@ export const AppBar = () => {
 
             <div className="flex justify-between space-x-8 m-6">
                 <div className="text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110 ">
-                   <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl">Home</button>
+                   <button className="cursor-pointer  hover:bg-violet-400  p-2 rounded-2xl" onClick={() => {
+                    setTimeout(() => {
+                        navigate("/dashboard")
+                    }, )
+                   }}>Home</button>
                 </div>
                 <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
                    <button className="cursor-pointer  hover:bg-violet-400 p-2 rounded-2xl "  onClick={() => {
