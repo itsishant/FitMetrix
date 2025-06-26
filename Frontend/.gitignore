@@ -22,3 +22,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+frontend/src/assets/workoutData.js
+workoutData.js
