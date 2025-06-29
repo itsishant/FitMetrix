@@ -3,10 +3,20 @@ import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { AppBar } from '../components/AppBar';
 import { useState } from 'react';
 import { workouts } from '../src/assets/workoutData';
+import { SeachBar } from '../components/SearchBar';
 
 export const Workout = () => {
 
   const [search, setSearch] = useState("");
+  const [details, setDetails] = useState("");
+
+  function tutorial () {
+    setDetails(
+      <div className='bg-black font-black'>
+        Hello 
+      </div>
+    )
+  }
 
 const filterWorkouts = workouts.filter((work) => {
      return work.name.toLowerCase().startsWith(search.toLowerCase())
@@ -22,7 +32,10 @@ const filterWorkouts = workouts.filter((work) => {
     </p>
     <FontAwesomeIcon icon={faDumbbell} className="text-6xl mt-26 rotate-75 vibrate" />
   </div>
-<form class="max-w-3xl mx-auto p-4 mt-4">    
+<form className="max-w-3xl mx-auto p-4 mt-4"
+ onSubmit={(e) => {
+  e.preventDefault()
+ }}>    
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div class="relative">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -31,7 +44,7 @@ const filterWorkouts = workouts.filter((work) => {
             </svg>
         </div>
         
-        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-950 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={(e) => {
           setTimeout(() => {
             setSearch(e.target.value)
@@ -48,21 +61,29 @@ const filterWorkouts = workouts.filter((work) => {
  */}
 
 
-<div className="grid grid-cols-1 gap-6 md:grid-cols-3  justify-between p-4 ml-4">
-  {filterWorkouts.map((workout, index) => {
-    return(
-    <div key={index} className="bg-slate-200 h-[450px] w-[450px] rounded-2xl m-4 relative overflow-hidden shadow-lg hover:scale-105 transition">
-      <img src={workout.image} alt={workout.name} className="w-full object-cover h-90 rounded-2xl opacity-85 absolute-0" />
-      <div className=" text-center relative cursor-pointer p-1.5 font-bold font-Poppin hover:text-violet-600 text-2xl text-gray-800">{workout.name}</div>
-      <div className="text-center ml-2 text-sm text-gray-600">
-        {workout.descriptions}
+<div className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
+        {filterWorkouts.map((workout, index) => (
+          <div
+            key={index}
+            className="bg-slate-200 p-4 shadow-lg h-[470px] w-[450px] rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
+          >
+            <img
+              src={workout.image}
+              alt={workout.name}
+              className="w-full object-cover h-90 rounded-2xl opacity-85 absolute-0"
+            />
+            <div
+              className="text-center relative cursor-pointer p-1.5 font-bold font-Poppin hover:text-violet-600 text-2xl text-gray-800"
+              onClick={tutorial}
+            >
+              {workout.name}
+            </div>
+            <div className="text-center ml-2 text-sm text-gray-600">{workout.descriptions}</div>
+          </div>
+        ))}
       </div>
 
-    </div>
-)})}
-</div>
-
-
+ <div className="flex justify-center">{details}</div>
 
   </div>
 );
