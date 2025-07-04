@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
     
-const signupSchema = zod.object({
+const signupSchema = zod.object({ 
     firstname: zod.string(),
     email: zod.string().email(),
     password: zod.string().min(6)
@@ -26,7 +26,7 @@ router.post("/signup", async (req, res) => {
         return res.status(403).json({
             message: "error while signing-up"
         })
-    }
+    }  
 
     const emailExist = await User.findOne({
         email: body.email

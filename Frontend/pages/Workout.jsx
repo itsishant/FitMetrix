@@ -8,15 +8,9 @@ import { SeachBar } from '../components/SearchBar';
 export const Workout = () => {
 
   const [search, setSearch] = useState("");
-  const [details, setDetails] = useState("");
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
 
-  function tutorial () {
-    setDetails(
-      <div className='bg-black font-black'>
-        Hello 
-      </div>
-    )
-  }
+
 
 const filterWorkouts = workouts.filter((work) => {
      return work.name.toLowerCase().startsWith(search.toLowerCase())
@@ -60,7 +54,6 @@ const filterWorkouts = workouts.filter((work) => {
 </div>
  */}
 
-
 <div className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
         {filterWorkouts.map((workout, index) => (
           <div
@@ -74,18 +67,32 @@ const filterWorkouts = workouts.filter((work) => {
             />
             <div
               className="text-center relative cursor-pointer p-1.5 font-bold font-Poppin hover:text-violet-600 text-2xl text-gray-800"
-              onClick={tutorial}
+             onClick={() => setSelectedWorkout(workout)}
+
             >
               {workout.name}
             </div>
             <div className="text-center ml-2 text-sm text-gray-600">{workout.descriptions}</div>
           </div>
         ))}
+        
       </div>
+     
 
- <div className="flex justify-center">{details}</div>
+
+{selectedWorkout && (
+  <div className="fixed top-[300px] left-1/2 translate-x-[-50%]">
+    <div
+      className=" bg-black text-white h-[400px] w-[800px] flex items-center justify-center rounded-xl"
+      onClick={() => setSelectedWorkout(null)}
+    >
+      {selectedWorkout.name}
+    </div>
+  </div>
+)}
 
   </div>
+  
 );
 
 }
