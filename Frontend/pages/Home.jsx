@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { motion } from "motion/react";
 
 
 const Home = () => {
@@ -24,19 +25,36 @@ const Home = () => {
             <div className="flex  items-center gap-10 ">
                 <img src="fitness.jpg" className="w-220 border-2 rounded-xl h-169 ml-3" alt="" />
                <div className="border p-10 rounded-4xl shadow-lg w-[500px] h-[520px]">
-                    <h2 className="text-5xl font-Poppin mb-22 text-center">Sign Up
+                    <h2 className="text-5xl font-Poppin mb-18 text-center">Sign Up
                     </h2>
-                    <form className="flex flex-col gap-8">
+                    <form className="flex flex-col gap-9">
                         <input onChange={(e) => {
                             setName(e.target.value);
-                        }} type="text" placeholder="Name" className="border p-3 rounded" />
+                            
+                        }}  type="text" placeholder="Name" className="border p-3 rounded-4xl" />
                         <input onChange={(e) => {
                             setEmail(e.target.value);
-                        }} type="email" placeholder="Email" className="border p-3 rounded" />
+                        }} type="email" placeholder="Email" className="border p-3 rounded-4xl" />
                         <input onChange={(e) => {
                             setPassword(e.target.value);
-                        }} type="password" placeholder="Password" className="border p-3 rounded" />
-                        <button onClick={async (e) => {
+                        }} type="password" placeholder="Password" className="border p-3 rounded-4xl" />
+                        <motion.button 
+                       whileHover={{
+                        scale: 1.03,
+                       }}
+                       whileTap={{
+                        scale: 0.90
+                       }}
+                       style={{
+                        y:-4,
+                        scale: 0.90
+                       }}
+                       transition={{
+                        duration: 0.4,
+                        ease: "easeInOut"
+                       }}
+                       
+                        onClick={async (e) => {
                             e.preventDefault(); 
 
                             if(!firstname || !email || !password){
@@ -55,7 +73,7 @@ const Home = () => {
                             } catch(err){
                                 alert("Please try again later!")
                             }
-                        }} className="bg-violet-700 text-white py-4 hover:bg-violet-800 transition rounded-4xl">Register</button>
+                        }} className="bg-black text-white text-xl py-4 transition rounded-4xl">Register</motion.button>
 
                     </form> 
                 </div>
