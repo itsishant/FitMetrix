@@ -14,4 +14,6 @@ const Dashboard = () => {
     )
 }
 
+//just a simple dashboard component that includes the AppBar, PhotoDashboard, and Bottom components
+
 export default Dashboard;

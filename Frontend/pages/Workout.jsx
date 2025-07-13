@@ -4,6 +4,7 @@ import { AppBar } from '../components/AppBar';
 import { useState } from 'react';
 import { workouts } from '../src/assets/workoutData';
 import { SeachBar } from '../components/SearchBar';
+import { motion } from 'motion/react';
 
 export const Workout = () => {
 
@@ -17,7 +18,8 @@ const filterWorkouts = workouts.filter((work) => {
     })
 
   return (
-    <div className='bg-gradient-to-r from-slate-300 to-slate-300 min-h-screen'>
+    <motion.div
+    className='bg-gradient-to-r from-slate-300 to-slate-300 min-h-screen'>
       <AppBar />
   <div className="flex justify-center items-center space-x-4">
     <FontAwesomeIcon icon={faDumbbell} className="text-6xl mt-26 rotate-105 vibrate" />
@@ -54,9 +56,14 @@ const filterWorkouts = workouts.filter((work) => {
 </div>
  */}
 
-<div className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
+<motion.div 
+    initial={{ opacity:0 , y: 50 }}
+    animate={{ opacity: 1, y: 10 }}
+    transition={{ duration: 1.6 }}
+     className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
         {filterWorkouts.map((workout, index) => (
-          <div
+          <motion.div 
+          whileHover={{ scale: 1.02 }}
             key={index}
             className="bg-slate-200 p-4 shadow-lg h-[470px] w-[450px] rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
           >
@@ -73,10 +80,10 @@ const filterWorkouts = workouts.filter((work) => {
               {workout.name}
             </div>
             <div className="text-center ml-2 text-sm text-gray-600">{workout.descriptions}</div>
-          </div>
+          </motion.div>
         ))}
         
-      </div>
+      </motion.div>
      
 
 
@@ -91,7 +98,7 @@ const filterWorkouts = workouts.filter((work) => {
   </div>
 )}
 
-  </div>
+  </motion.div>
   
 );
 

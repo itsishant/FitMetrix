@@ -40,17 +40,17 @@ const Home = () => {
                         }} type="password" placeholder="Password" className="border p-3 rounded-4xl" />
                         <motion.button 
                        whileHover={{
-                        scale: 1.03,
+                        scale: 0.99,
                        }}
                        whileTap={{
                         scale: 0.90
                        }}
                        style={{
-                        y:-4,
                         scale: 0.90
                        }}
                        transition={{
-                        duration: 0.4,
+                        
+
                         ease: "easeInOut"
                        }}
                        

@@ -10,7 +10,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className="hidden sm:block">
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
