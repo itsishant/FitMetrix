@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { workouts } from '../src/assets/workoutData';
 import { SeachBar } from '../components/SearchBar';
 import { motion } from 'motion/react';
+import { toUpperCase } from 'zod/v4';
 
 export const Workout = () => {
 
@@ -36,7 +37,7 @@ const filterWorkouts = workouts.filter((work) => {
     <div class="relative">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
         
@@ -88,14 +89,40 @@ const filterWorkouts = workouts.filter((work) => {
 
 
 {selectedWorkout && (
-  <div className="fixed top-[300px] left-1/2 translate-x-[-50%]">
+  <motion.div
+  initial={{
+    opacacity: 0, scale: 0.8
+  }}
+  animate={{
+    opacity: 1, scale:1
+  }}
+  transition={{ duration: 0.4} }
+  className="fixed top-[220px] left-1/2 translate-x-[-50%]">
     <div
-      className=" bg-black text-white h-[400px] w-[800px] flex items-center justify-center rounded-xl"
+      className=" bg-slate-300 text-white h-[470px] w-[800px] flex items-center border-4 border-black justify-center rounded-2xl"
       onClick={() => setSelectedWorkout(null)}
     >
-      {selectedWorkout.name}
+      <motion.div 
+      whileHover={{ scale: 1.05 }}
+      initial={{
+        opacity: 0, scale:0.4
+      }}
+      animate={{
+        opacity: 1, scale:1
+      }} 
+      transition={{
+        duration: 0.2
+      }} className='text-4xl text-black text-shadow-black font font-Poppin md:mb-92 bg-violet-500 p-2 rounded-2xl mb-80   text-center'>
+        <motion.p 
+        initial={{
+          opacity:1, scale:0.8
+        }} 
+        // transition={{ duration: 0.2 }}
+       >{selectedWorkout.name}  </motion.p> 
+      </motion.div>
+      {/* {selectedWorkout.name} */}
     </div>
-  </div>
+  </motion.div>
 )}
 
   </motion.div>
