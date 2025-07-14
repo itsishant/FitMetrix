@@ -9,8 +9,24 @@ import { toUpperCase } from 'zod/v4';
 
 export const Workout = () => {
 
+  const steps = {
+    point:[
+  "Prepare your body using cardio and stretching to prevent workout injuries.",
+  "Begin training with focus and control for optimal strength and endurance.",
+  "Execute each movement slowly while maintaining posture and proper breathing .",
+  "Stay mindful of technique to maximize gains and reduce strain risks.",
+  "Keep rest short between sets to maintain heart rate and intensity.",
+  "Sip water regularly to stay hydrated and support muscle performance.",
+  "Push your limits in final sets to improve growth and endurance.",
+  "End session with deep stretches targeting muscles worked during your routine."
+
+
+    ]
+  }
+
   const [search, setSearch] = useState("");
-  const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [selectedWorkout, setSelectedWorkout] = useState(null); 
+  // const [selectedWorkoutDetails, setSelectedWorkoutDetails] = useState(null);
 
 
 
@@ -41,7 +57,7 @@ const filterWorkouts = workouts.filter((work) => {
             </svg>
         </div>
         
-        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-950 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={(e) => {
           setTimeout(() => {
             setSearch(e.target.value)
@@ -99,7 +115,7 @@ const filterWorkouts = workouts.filter((work) => {
   transition={{ duration: 0.4} }
   className="fixed top-[220px] left-1/2 translate-x-[-50%]">
     <div
-      className=" bg-slate-300 text-white h-[470px] w-[800px] flex items-center border-4 border-black justify-center rounded-2xl"
+    className="bg-slate-300 center text-white h-[470px] w-[800px] flex flex-col items-center justify-start pt-8 px-4 border-4 border-black rounded-2xl"
       onClick={() => setSelectedWorkout(null)}
     >
       <motion.div 
@@ -112,14 +128,41 @@ const filterWorkouts = workouts.filter((work) => {
       }} 
       transition={{
         duration: 0.2
-      }} className='text-4xl text-black text-shadow-black font font-Poppin md:mb-92 bg-violet-500 p-2 rounded-2xl mb-80   text-center'>
+      }}   className='text-4xl text-black text-shadow-black font font-Poppin mt mb- bg-violet-500 p-2 rounded-2xl text-center'
+      >
+
         <motion.p 
         initial={{
           opacity:1, scale:0.8
         }} 
+        className='text-center'
         // transition={{ duration: 0.2 }}
-       >{selectedWorkout.name}  </motion.p> 
-      </motion.div>
+       >{selectedWorkout.name}
+       </motion.p>
+       </motion.div> 
+       <div className='text-left text-lg text-black font-Poppin mt-8 space-y-2 '>
+
+
+        {steps.point.map((steper,index) => (
+          
+            <motion.p 
+            initial = {{
+              opacity: 0, x: -30
+            }}
+            animate = {{
+              opacity: 1, x: 0    
+
+            }}
+            transition={{
+              duration: 0.4, delay: index * 0.2 , ease: "easeInOut"
+            }}
+             key={index} className=''> 
+            {"➤ "+steper}
+            </motion.p>
+        ))} 
+       </div>
+       
+    
       {/* {selectedWorkout.name} */}
     </div>
   </motion.div>

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Incline Push-Ups",
+    "image": "/public/Inclined-pushup.gif",
+    "descriptions": "A beginner-friendly push-up variation that targets the chest with reduced resistance.",
+    "steps": [
+      "Place hands on elevated surface, shoulder-width apart.",
+      "Extend legs backward keeping body in a straight line.",
+      "Lower chest slowly toward the surface.",
+      "Push back up to the starting position."
+    ]
+  },
+  {
+    "name": "Overhead Squat",
+    "image": "/public/squats.gif",
+    "descriptions": "A full-body squat performed while holding a barbell overhead, improving strength, stability, and mobility.",
+    "steps": [
+      "Stand with barbell overhead, arms locked out.",
+      "Keep chest up and core tight.",
+      "Squat down slowly while keeping bar stable.",
+      "Drive through heels to return to standing."
+    ]
+  },
+  {
+    "name": "Seated Barbell Shoulder Press",
+    "image": "/public/chest.gif",
+    "descriptions": "An upper-body strength exercise where the lifter presses a barbell overhead while seated, targeting the shoulders and triceps.",
+    "steps": [
+      "Sit on a bench with back support.",
+      "Hold barbell at shoulder height with a firm grip.",
+      "Press the bar upward until arms are straight.",
+      "Lower slowly back to shoulder height."
+    ]
+  },
+  {
+    "name": "Dumbbell Bicep Curl",
+    "image": "/public/bicep.gif",
+    "descriptions": "A classic arm exercise where you lift dumbbells by bending your elbows, isolating and building the biceps.",
+    "steps": [
+      "Hold dumbbells by your sides with palms facing forward.",
+      "Keep elbows close to your torso.",
+      "Curl weights up while contracting biceps.",
+      "Lower slowly back down."
+    ]
+  },
+  {
+    "name": "Plank",
+    "image": "/public/plank.gif",
+    "descriptions": "A core strengthening isometric exercise where you hold your body in a straight line, engaging the abs, back, and shoulders.",
+    "steps": [
+      "Place forearms on the floor and extend legs back.",
+      "Keep your body in a straight line from head to heels.",
+      "Engage your core and avoid arching your back.",
+      "Hold the position for the desired duration."
+    ]
+  }
+]
