@@ -1,13 +1,12 @@
-import Home from "../components/Roboy"
+import { AppBar } from "../components/AppBar"
 
 export const DietPlan = () => {
     return(
-        <div className="bg-slate-900 h-screen">
-            <Home />
-            {/* <div className="text-7xl text-center text-violet-600 pt-10 font-Poppin">
-                Diet planner 
-                <p className="text-2xl pt-16 font"> hello </p> */}
-            
+        <div className="bg-slate-300 h-screen"> 
+        <AppBar />
+         <div className="text-6xl text-center pt-30 font-Poppin">
+               <p className="text-black bg-violet-500 p-2 rounded-full inline-block px-6 py-3"> Diet planner </p> 
+          </div>
         </div>
     )
 }

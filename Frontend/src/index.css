@@ -1,5 +1,4 @@
 @import "tailwindcss";
-import reactLogo from './assets/react.svg';
 @font-face {
     font-family: Poppin;
     src: url("./assets/fonts/Poppins-ExtraBold.ttf");

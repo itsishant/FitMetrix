@@ -6,23 +6,9 @@ import { workouts } from '../src/assets/workoutData';
 import { SeachBar } from '../components/SearchBar';
 import { motion } from 'motion/react';
 import { toUpperCase } from 'zod/v4';
+import { steps } from '../src/assets/Details';
 
 export const Workout = () => {
-
-  const steps = {
-    point:[
-  "Prepare your body using cardio and stretching to prevent workout injuries.",
-  "Begin training with focus and control for optimal strength and endurance.",
-  "Execute each movement slowly while maintaining posture and proper breathing .",
-  "Stay mindful of technique to maximize gains and reduce strain risks.",
-  "Keep rest short between sets to maintain heart rate and intensity.",
-  "Sip water regularly to stay hydrated and support muscle performance.",
-  "Push your limits in final sets to improve growth and endurance.",
-  "End session with deep stretches targeting muscles worked during your routine."
-
-
-    ]
-  }
 
   const [search, setSearch] = useState("");
   const [selectedWorkout, setSelectedWorkout] = useState(null); 
@@ -57,7 +43,7 @@ const filterWorkouts = workouts.filter((work) => {
             </svg>
         </div>
         
-        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={(e) => {
           setTimeout(() => {
             setSearch(e.target.value)
@@ -115,8 +101,8 @@ const filterWorkouts = workouts.filter((work) => {
   transition={{ duration: 0.4} }
   className="fixed top-[220px] left-1/2 translate-x-[-50%]">
     <div
-    className="bg-slate-300 center text-white h-[470px] w-[800px] flex flex-col items-center justify-start pt-8 px-4 border-4 border-black rounded-2xl"
-      onClick={() => setSelectedWorkout(null)}
+    className="bg-slate-300 center text-white h-[470px] w-[800px] flex flex-col items-center justify-start pt-2  border-4 border-black rounded-2xl"
+    
     >
       <motion.div 
       whileHover={{ scale: 1.05 }}
@@ -128,7 +114,7 @@ const filterWorkouts = workouts.filter((work) => {
       }} 
       transition={{
         duration: 0.2
-      }}   className='text-4xl text-black text-shadow-black font font-Poppin mt mb- bg-violet-500 p-2 rounded-2xl text-center'
+      }}   className='text-4xl text-black text-shadow-black font font-Poppin  mb-   bg-violet-500 p-2 rounded-2xl text-center'
       >
 
         <motion.p 
@@ -139,22 +125,34 @@ const filterWorkouts = workouts.filter((work) => {
         // transition={{ duration: 0.2 }}
        >{selectedWorkout.name}
        </motion.p>
-       </motion.div> 
-       <div className='text-left text-lg text-black font-Poppin mt-8 space-y-2 '>
+       
+       </motion.div>  
+       <div 
+        className=''>
+       <motion.img
+      initial={{ scale: 0.8 }}
+       whileHover={{ scale: 1.05 }}
+       transition={{
+        duration:0.2
+       }} 
+       src="/delete.png" alt=""  hello className="cursor-pointer absolute left-88 bottom-2 text-2xl size-8 mb-102 ml-98" 
+       onClick={() => {setSelectedWorkout(null)}}/>
+       </div>
+       <div className='text-left text-lg text-black font-Poppin mt-4 space-y-4 '>
 
 
         {steps.point.map((steper,index) => (
           
             <motion.p 
             initial = {{
-              opacity: 0, x: -30
+              opacity: 0, x: -20
             }}
             animate = {{
               opacity: 1, x: 0    
 
             }}
             transition={{
-              duration: 0.4, delay: index * 0.2 , ease: "easeInOut"
+              duration: 0.4, delay: index * 0.1 , ease: "easeInOut"
             }}
              key={index} className=''> 
             {"➤ "+steper}
