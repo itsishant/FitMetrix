@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 frontend/src/assets/workoutData.js
 workoutData.js
+Spline3D.jsx
