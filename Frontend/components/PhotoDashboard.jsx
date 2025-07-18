@@ -9,7 +9,7 @@ export const PhotoDashboard = () => {
     opacity: 0,
     transform: "translate(-100%)"  
   }}>
-                <h1 className="text-stone-800 text-7xl font-Poppin ml-44 mt-28">Your Fitness Journey</h1>
+                <h1 className="text-neutral-500 text-7xl font-Poppin ml-44 mt-28">Your Fitness Journey</h1>
                 <h1 className="text-5xl ml-74 text-stone-800 mt-16 font-Poppin">Elevated Through 💪🏻 </h1>
                 <h1 className="text-7xl font-Poppin ml-51 text-stone-800 mt-16 flex space-x-4">
                  <p className="text-stone-800">Fit</p>

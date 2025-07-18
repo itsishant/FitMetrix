@@ -68,7 +68,7 @@ const filterWorkouts = workouts.filter((work) => {
           <motion.div 
           whileHover={{ scale: 1.02 }}
             key={index}
-            className="bg-slate-200 p-4 shadow-lg h-[470px] w-[450px] rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
+            className="bg-slate-200 p-4 shadow-lg h-[470px] w-[450px] border-1 rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
           >
             <img
               src={workout.image}
@@ -101,7 +101,7 @@ const filterWorkouts = workouts.filter((work) => {
   transition={{ duration: 0.4} }
   className="fixed top-[220px] left-1/2 translate-x-[-50%]">
     <div
-    className="bg-slate-300 center text-white h-[470px] w-[800px] flex flex-col items-center justify-start pt-2  border-4 border-black rounded-2xl"
+    className="bg-slate-300 center  text-white h-[440px] w-[800px] flex flex-col items-center justify-start pt-4  border-2 border-black rounded-2xl"
     
     >
       <motion.div 
@@ -135,13 +135,13 @@ const filterWorkouts = workouts.filter((work) => {
        transition={{
         duration:0.2
        }} 
-       src="/delete.png" alt=""  hello className="cursor-pointer absolute left-88 bottom-2 text-2xl size-8 mb-102 ml-98" 
+       src="/delete.png" alt=""  hello className="cursor-pointer absolute left-88 bottom-96 text-2xl size-8 ml-98" 
        onClick={() => {setSelectedWorkout(null)}}/>
        </div>
        <div className='text-left text-lg text-black font-Poppin mt-4 space-y-4 '>
 
 
-        {steps.point.map((steper,index) => (
+        {selectedWorkout.details.map((steper,index) => (
           
             <motion.p 
             initial = {{
@@ -154,8 +154,8 @@ const filterWorkouts = workouts.filter((work) => {
             transition={{
               duration: 0.4, delay: index * 0.1 , ease: "easeInOut"
             }}
-             key={index} className=''> 
-            {"➤ "+steper}
+             key={index} className='text-xl text-left'> 
+            {"➤ " +steper}
             </motion.p>
         ))} 
        </div>
