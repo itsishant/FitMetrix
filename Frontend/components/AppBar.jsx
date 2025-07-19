@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { nav } from "motion/react-client";
 import { set } from "mongoose";
@@ -14,6 +14,15 @@ export const AppBar = () => {
 
     return(
 <motion.div
+initial={{
+    opacity:0, y:0
+}}
+animate={{
+    opacity:1, y:0
+}}
+transition={{
+    duration:0.2, ease:"easeInOut"
+}}
 className="fixed backdrop-blur-2xl top-1 w-[94%] ml-10 z-50 flex justify-between items-center h-20 bg-slate-300/40  border-3 border-violet-600 rounded-3xl px-6">
     <div className="m-6 text-5xl flex space-x-2 ">
         <p className="font-Poppin"> Fit</p> 
@@ -30,7 +39,7 @@ className="fixed backdrop-blur-2xl top-1 w-[94%] ml-10 z-50 flex justify-between
                     setTimeout(() => {
                         navigate("/dashboard")
                     },200 )                    
-                }}
+                }}  
             >Home</button>
         </div>
         <div className="text-center text-xl font-Poppin transition delay-150 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">

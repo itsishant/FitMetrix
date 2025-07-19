@@ -7,18 +7,35 @@ import { SeachBar } from '../components/SearchBar';
 import { motion } from 'motion/react';
 import { toUpperCase } from 'zod/v4';
 import { steps } from '../src/assets/Details';
+import { useLocation } from 'react-router-dom';
 
 export const Workout = () => {
 
   const [search, setSearch] = useState("");
   const [selectedWorkout, setSelectedWorkout] = useState(null); 
+  const [filterWorkout, setFilterWorkout] = useState(false);
+  const location = useLocation();
+  const [filterbutton, setFilterButton] = useState([]);
   // const [selectedWorkoutDetails, setSelectedWorkoutDetails] = useState(null);
 
-
-
 const filterWorkouts = workouts.filter((work) => {
-     return work.name.toLowerCase().startsWith(search.toLowerCase())
-    })
+  const matchesSearch = work.name.toLowerCase().includes(search.toLowerCase());
+  const matchesFilter =
+    filterbutton === "default" || filterbutton.length === 0 || filterbutton.includes(work.type?.toLowerCase());
+  return matchesSearch && matchesFilter;
+});
+
+ 
+
+    const toggleFilter = (type) => {
+  setFilterButton((prev) =>
+    prev.includes(type)
+      ? prev.filter((item) => item !== type)
+      : [...prev, type]
+  );
+};
+
+
 
   return (
     <motion.div
@@ -31,28 +48,72 @@ const filterWorkouts = workouts.filter((work) => {
     </p>
     <FontAwesomeIcon icon={faDumbbell} className="text-6xl mt-26 rotate-75 vibrate" />
   </div>
-<form className="max-w-3xl mx-auto p-4 mt-4"
+<form className="max-w-3xl mx-auto flex items-center gap-4  -4 mt-4"
  onSubmit={(e) => {
   e.preventDefault()
  }}>    
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-    <div class="relative">
+    <div class="relative w-full">
         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
             </svg>
         </div>
         
-        <input type="search" id="default-search" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        <input type="text" id="default- h" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700   dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         onChange={(e) => {
           setTimeout(() => {
             setSearch(e.target.value)
           }, 800)
         }} placeholder="Search " required />    
         <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-violet-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Search</button>
-
+        
     </div>
+    
+<button 
+ onClick={() => setFilterWorkout(prev => !prev)}
+  className="cursor-pointer flex rounded-lg bg-gray-700 py-3 px-4 text-neutral-300 text-md font-Poppin hover:text-slate-300">
+  FILTER  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-1 size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+</svg>
+
+</button>
+
 </form>
+
+
+{filterWorkout && (
+<div className="bg-slate-200 p-4 rounded-2xl shadow-lg grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 text-sm mt-4 max-w-4xl mx-auto">
+
+    <button onClick={() => {
+      toggleFilter("upper")
+    }} className= {filterbutton.includes("upper") ? "cursor-pointer px-2   space-x-2  py-1 text-white h-8 font-Poppin bg-gray-700 rounded" : "cursor-pointer px-2 py-1 h-8 bg-slate-300  font-Poppin rounded"} >Upper</button>
+    <button onClick={() => {
+      toggleFilter("lower")
+    }} className={filterbutton.includes("lower") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer h-8 px-2 py-1 bg-slate-300 font-Poppin rounded"}>Lower</button>
+    <button onClick={() => {
+      toggleFilter("core")
+    }} className= {filterbutton.includes("core") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer px-2 py-1 h-8 bg-slate-300 font-Poppin rounded"}  >Core</button>
+    <button onClick={() => {
+      toggleFilter("full")
+    }} className= {filterbutton.includes("full") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer px-2 h-8 py-1 bg-slate-300 font-Poppin rounded"} >Full</button>
+    <button onClick={() => {
+      toggleFilter("arms")
+    }} className = {filterbutton.includes("arms") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer px-2 py-1 h-8 bg-slate-300 font-Poppin rounded"} >Arms
+     </button>
+    <button onClick={() => {
+      toggleFilter("cardio")
+    }} className= {filterbutton.includes("cardio") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer h-8 px-2 py-1 bg-slate-300 font-Poppin rounded"} >Cardio</button>
+    <button onClick={() => {
+      toggleFilter("legs")
+    }} className = {filterbutton.includes("legs") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer h-8 px-2 py-1 bg-slate-300 font-Poppin rounded"} >Legs
+     </button>
+      <button onClick={() => {
+      toggleFilter("shoulder")
+    }} className = {filterbutton.includes("shoulder") ? "cursor-pointer px-2 space-x-2 py-1 text-white font-Poppin h-8 bg-gray-700 rounded" : "cursor-pointer h-8 px-2 py-1 bg-slate-300 font-Poppin rounded"} >Shoulders
+     </button>   
+  </div>
+)}
 
 {/* <div className=' h-120 w-110 border-4 border-violet-700 rounded-2xl m-12'>
 
@@ -68,7 +129,8 @@ const filterWorkouts = workouts.filter((work) => {
           <motion.div 
           whileHover={{ scale: 1.02 }}
             key={index}
-            className="bg-slate-200 p-4 shadow-lg h-[470px] w-[450px] border-1 rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
+            className="bg-slate-200 p-2 shadow-lg h-[470px] w-[450px] border-1 rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
+            
           >
             <img
               src={workout.image}
