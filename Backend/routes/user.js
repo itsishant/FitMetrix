@@ -3,133 +3,91 @@ const useRouter = require("./user");
 const { parse } = require("zod/v4-mini");
 const zod = require("zod");
 const { email } = require("zod/v4");
-const { User } = require("../db");
+const { user } = require("../db");
 const { JWT_SECRET } = require("../config");
 const {authMiddleware} = require("../middleware");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 const router = express.Router();
     
 const signupSchema = zod.object({ 
-    firstname: zod.string(),
+    username: zod.string(),
     email: zod.string().email(),
     password: zod.string().min(6)
 })
 
 
-
 router.post("/signup", async (req, res) => {
-    const body = req.body;
-    const {success} = signupSchema.safeParse(body);
 
-    if(!success){
-        return res.status(403).json({
-            message: "error while signing-up"
-        })
-    }  
-
-    const emailExist = await User.findOne({
-        email: body.email
+    const checkEmail = await user.findOne({
+        email: email
     })
 
-    if(emailExist){
-        return res.status(403).json({
-            message: "Email is already exists"
+    if(checkEmail){
+        res.json({
+            message: "Email already exists"
         })
-    
+    }else{
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        await user.createOne({
+            username: req.body.username,
+            email: req.body.email,
+            password: hashedPassword
+        })
+
+        const token = jwt.sign({
+            username
+        }, JWT_SECRET)
+
+        res.json({
+            message: "user created successfully",
+            token: token
+        })
     }
 
-    const newUser = await User.create({
-
-        firstname: req.body.firstname,
-        email: req.body.email,
-        password: req.body.password
-
-    })
-
-   const userId = newUser._id;
-
-
-    if(newUser){
-    const token = jwt.sign({
-        userId: newUser._id
-    }, JWT_SECRET);
-
-    return res.status(200).json({
-        message: "User created successfully",
-        token: token
-    });
-}
-
-
-})
-
-
-
-const signinSchema = zod.object({
-    email: zod.string().email(),
-    password: zod.string()
 })
 
 
 router.post("/signin", async (req, res) => {
-    const body = req.body;
-    const {success} = signinSchema.safeParse(body);
 
-    if(!success){
-        return res.status(403).json({
-            message: "invaild inputs"
-        })
-    }
-
-    const existingUser = await User.findOne({
-        email: req.body.email,
-        password: req.body.password
+    const userSignIn = await user.find({
+        username: username,
+        email: email,
     })
 
-    if(existingUser){
+    if(userSignIn){
+
+        const isPasswordValid = await bcrypt.compare(passowrd, userSignIn.passowrd);
+
+        if(isPasswordValid){
+
         const token = jwt.sign({
-        userId: existingUser._id
+            username
         }, JWT_SECRET)
 
         res.json({
-            message: "signed in successfully",
-            success: true,
+            message: "User signed in successfully",
             token: token
         })
-
-        return;
     }
-
-    return res.status(400).json({
-        message: "Error while login"
-    })
-})
-
-
-const updateSchema = zod.object({
-    firstname: zod.string()
-})
-
-router.put("/", authMiddleware, async (req, res) => {
-    const body = req.body;
-    const {success} = updateSchema.safePars(body);
-    
-    if(!success){
-        return res.status(400).json({
-            "message": "invaild inputs"
+    else{
+        res.json({
+            message: "Invaild credentials"
         })
-
     }
-
-    const nameUpdate = User.updateOne({
-        _id: req.nameUser._id
-    }, req.body);
-
-    res.status(200).json({
-        message: "updated successfully"
-    })
+}
+    else{
+        res.json({
+            message: "User not founded"
+        })
+    }
 
 })
 
-module.exports = router;
+
+router.get("/dashboard", auth, (req, res) => {
+    
+})

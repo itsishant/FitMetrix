@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import { Workout } from "../pages/Workout";
 import { DietPlan } from "../pages/DietPlan";
+import { AboutUs } from "../pages/Aboutus";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/dashboard/workout" element={<Workout />} />
         <Route path="/dashboard/dietplan" element={<DietPlan />} />
+        <Route path="/dashboard/aboutus" element={<AboutUs />} />
       </Routes>
       </BrowserRouter>
       

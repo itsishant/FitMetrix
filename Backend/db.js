@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
-const { email } = require("zod/v4");
+const { email, string } = require("zod/v4");
 async function connectDB(){
     try{
-        await mongoose.connect(MONGO_URL);
         console.log("Connected to mongodb");
     }
     catch(err){
@@ -12,14 +11,15 @@ async function connectDB(){
 
 connectDB();
 
-const userSchema = mongoose.Schema({
-    firstname: String,
+const userSchema = new mongoose.user({
+    username: String,
     email: String,
     password: String
+    
 })
 
-const User = mongoose.model("User", userSchema);
+const user = mongoose.model('user', userSchema);
 
 module.exports = {
-    User
+    user
 }

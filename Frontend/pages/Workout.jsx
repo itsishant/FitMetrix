@@ -129,7 +129,7 @@ const filterWorkouts = workouts.filter((work) => {
           <motion.div 
           whileHover={{ scale: 1.02 }}
             key={index}
-            className="bg-slate-200 p-2 shadow-lg h-[470px] w-[450px] border-1 rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
+            className="bg-slate-200 p-2 shadow-2xl border-gray-600 border-0k h-[470px] w-[450px]  rounded-2xl m-4 relative overflow-hidden hover:scale-105 transition"
             
           >
             <img

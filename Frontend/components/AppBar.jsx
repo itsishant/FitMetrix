@@ -1,3 +1,4 @@
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -23,8 +24,8 @@ animate={{
 transition={{
     duration:0.2, ease:"easeInOut"
 }}
-className="fixed backdrop-blur-2xl top-1 w-[94%] ml-10 z-50 flex justify-between items-center h-20 bg-slate-300/40  border-3 border-violet-600 rounded-3xl px-6">
-    <div className="m-6 text-5xl flex space-x-2 ">
+className="fixed top-1 left-1/2 transform -translate-x-1/2 backdrop-blur-xl bg-white/40 w-[90%] z-50 flex justify-between items-center h-20 border-2 border-violet-600 rounded-full px-6">
+     <div className="m-6 text-5xl flex space-x-2 ">
         <p className="font-Poppin"> Fit</p> 
         <p className="text-violet-700 font-Poppin"> Metrix</p>
     </div>
@@ -66,14 +67,14 @@ className="fixed backdrop-blur-2xl top-1 w-[94%] ml-10 z-50 flex justify-between
         </div>
         <div className="text-center text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
             <button 
-                className={isActive("/dashboard/contactus") ? "cursor-pointer p-2 rounded-2xl bg-violet-400" : "cursor-pointer p-2 rounded-2xl hover:bg-violet-400"} 
+                className={isActive("/dashboard/aboutus") ? "cursor-pointer p-2 rounded-2xl bg-violet-400" : "cursor-pointer p-2 rounded-2xl hover:bg-violet-400"} 
                 onClick={() => {
                     setTimeout(() => {
-                        navigate("/dashboard/contactus")
-                        setActiveButton("contactus");
+                        navigate("/dashboard/aboutus")
+                        setActiveButton("aboutus");
                     } , 200)
                 }} 
-            >Contact Us</button>
+            >About us</button>
         </div>
         <div className="text-center text-xl font-Poppin transition delay-1 duration-200 ease-in-out hover:-translate-y-1 hover:scale-110">
             <button 

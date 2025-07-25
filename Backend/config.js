@@ -1,5 +1,5 @@
-const JWT_SECRET = "ishantsecret" ;
+const JWT_SECRET = "Ishant123445"
 
-module.exports = {
-     JWT_SECRET 
-};
+module.export = {
+     JWT_SECRET
+}
