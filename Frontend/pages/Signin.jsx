@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "motion/react";
 
-const Home = () => {
+const Signin = () => {
   const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
 
   return (
-    <div className="h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-white via-slate-300 to-slate-300">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-white via-slate-300 to-slate-300">
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -42,15 +42,9 @@ const Home = () => {
 
         <div className="w-full md:w-1/2 p-10 sm:p-14 flex flex-col justify-center">
           <h2 className="text-4xl sm:text-5xl font-bold text-center text-gray-900 mb-10">
-            Sign Up
+            Sign In
           </h2>
           <form className="flex flex-col gap-6">
-            <input
-              type="text"
-              placeholder="Name"
-              className="p-4 rounded-xl border border-gray-300 bg-slate-50 focus:ring-2 focus:ring-violet-600 focus:outline-none text-lg"
-              onChange={(e) => setName(e.target.value)}
-            />
             <input
               type="email"
               placeholder="Email"
@@ -71,32 +65,40 @@ const Home = () => {
               className="w-full bg-violet-700 text-white py-4 rounded-xl font-semibold text-xl shadow-md hover:bg-violet-800 transition"
               onClick={async (e) => {
                 e.preventDefault();
-                if (!username || !email || !password) {
+                if (!email || !password) {
                   alert("Please fill all the fields");
                   return;
                 }
-                try {
-                  const response = await axios.post(
-                    "http://localhost:1000/api/v1/user/signup",
-                    { username, email, password }
-                  );
-                  localStorage.setItem("token", response?.data?.token);
-                  setTimeout(() => navigate("/dashboard"), 1000);
-                } catch (err) {
-                  alert("Email already exists");
-                }
-              }}
+                  try {
+    const response = await axios.post("http://localhost:1000/api/v1/user/signin", {
+      email,
+      password,
+    });
+
+    if (response.data?.token) {
+      localStorage.setItem("token", response.data.token);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 1000);
+    } else {
+      alert(response.data?.message || "User not exists");
+    }
+  } catch (error) {
+    console.log("Error:", error);
+    alert(error.response?.data?.message || "Login failed");
+  }
+}}
             >
-              Register
+              Login
             </motion.button>
           </form>
 
           <p className="text-gray-500 text-center mt-6 text-sm">
-            Already have an account?{" "}
+            Don't have an account? {" "}
             <span className="text-violet-600 cursor-pointer hover:underline" onClick={() => {
-                navigate("/signin")
+                navigate("/")
             }}>
-              Log In
+              Sign Up
             </span>
           </p>
         </div>
@@ -105,4 +107,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Signin;

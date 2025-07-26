@@ -2,9 +2,10 @@ import { AppBar } from "../components/AppBar"
 import { SeachBar } from "../components/SearchBar"
 import RotatingText from "../components/TrueFocus"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { BMI } from "../components/BMI"
 import CountUp from "../components/Counter"
+import { useNavigate } from "react-router-dom"
 
 export const DietPlan = () => {
 
@@ -14,6 +15,24 @@ export const DietPlan = () => {
   const [error, setError] = useState();
   const [loader, setLoader] = useState();
   const [category, setCategory] = useState("");
+
+      const navigate = useNavigate();
+  
+      useEffect(() => {
+          const checkToken = async () => {
+          const token = localStorage.getItem("token");
+          if(!token){
+              setTimeout(() => {
+                  alert("Hold up! You need an account to see this")
+                  navigate("/");
+              }, 2000)
+          }else{
+              console.log("Token exists");
+          }
+      };
+  
+      checkToken();
+      }, [])
 
   const lodingComp = <div role="status">
     <svg aria-hidden="true" class="w-18 h-18 text-gray-200 animate-spin dark:text-gray-600 fill-blue-500" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

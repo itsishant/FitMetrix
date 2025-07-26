@@ -1,4 +1,4 @@
-const JWT_SECRET = require("./config");
+const {JWT_SECRET} = require("./config");
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res ,next) => {
@@ -21,6 +21,6 @@ const auth = (req, res ,next) => {
             })
         }
     }
-
 }
 
+module.exports = auth;

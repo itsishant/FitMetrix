@@ -1,13 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import { AppBar } from '../components/AppBar';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { workouts } from '../src/assets/workoutData';
 import { SeachBar } from '../components/SearchBar';
 import { motion } from 'motion/react';
 import { toUpperCase } from 'zod/v4';
 import { steps } from '../src/assets/Details';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export const Workout = () => {
 
@@ -16,7 +17,24 @@ export const Workout = () => {
   const [filterWorkout, setFilterWorkout] = useState(false);
   const location = useLocation();
   const [filterbutton, setFilterButton] = useState([]);
-  // const [selectedWorkoutDetails, setSelectedWorkoutDetails] = useState(null);
+
+      const navigate = useNavigate();
+  
+      useEffect(() => {
+          const checkToken = async () => {
+          const token = localStorage.getItem("token");
+          if(!token){
+              setTimeout(() => {
+                  alert("Hold up! You need an account to see this")
+                  navigate("/");
+              }, 2000)
+          }else{
+              console.log("Token exists");
+          }
+      };
+  
+      checkToken();
+      }, [])
 
 const filterWorkouts = workouts.filter((work) => {
   const matchesSearch = work.name.toLowerCase().includes(search.toLowerCase());

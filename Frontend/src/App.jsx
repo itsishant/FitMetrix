@@ -5,16 +5,18 @@ import Dashboard from "../pages/Dashboard";
 import { Workout } from "../pages/Workout";
 import { DietPlan } from "../pages/DietPlan";
 import { AboutUs } from "../pages/Aboutus";
+import Signin from "../pages/Signin";
 
 function App() {
 
 
 
   return (
-    <div className="hidden sm:block">
+    <div className="hidden md:block lg:block xl:block">
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/dashboard" element={<Dashboard />}/>
         <Route path="/dashboard/workout" element={<Workout />} />
         <Route path="/dashboard/dietplan" element={<DietPlan />} />
