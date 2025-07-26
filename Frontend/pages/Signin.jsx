@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "motion/react";
+import API from "../src/axios";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -86,8 +87,8 @@ const Signin = () => {
                 }
 
                 try {
-                  const response = await axios.post(
-                    "http://localhost:3000/api/v1/user/signin",
+                  const response = await API.post(
+                    "/user/signin",
                     { email, password }
                   );
 

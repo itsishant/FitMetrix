@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { motion } from "motion/react";
+import API from "../src/axios";
 
 const Home = () => {
   const [username, setName] = useState("");
@@ -98,8 +99,8 @@ const Home = () => {
                 }
 
                 try {
-                  const response = await axios.post(
-                    "http://localhost:3000/api/v1/user/signup",
+                  const response = await API.post(
+                    "/user/signup",
                     { username, email, password }
                   );
                   localStorage.setItem("token", response?.data?.token);

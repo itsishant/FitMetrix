@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import API from "../src/axios";
 
 export const User = () => {
 
@@ -10,7 +11,7 @@ export const User = () => {
         const fetchUser = async () => {
              try{
             const token = localStorage.getItem("token")
-            const response = await axios.get("http://localhost:3000/api/v1/user/me", {
+            const response = await API.get("/user/me", {
                 headers: {
                     token
                 }
