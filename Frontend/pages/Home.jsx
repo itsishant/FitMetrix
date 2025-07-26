@@ -7,7 +7,12 @@ const Home = () => {
   const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   let navigate = useNavigate();
+
+  const validateEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   return (
     <div className="h-screen w-full flex flex-col items-center justify-center bg-gradient-to-br from-white via-slate-300 to-slate-300">
@@ -64,6 +69,10 @@ const Home = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
 
+            {error && (
+              <p className="text-red-600 text-sm text-center">{error}</p>
+            )}
+
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
@@ -71,19 +80,32 @@ const Home = () => {
               className="w-full bg-violet-700 text-white py-4 rounded-xl font-semibold text-xl shadow-md hover:bg-violet-800 transition"
               onClick={async (e) => {
                 e.preventDefault();
+                setError("");
+
                 if (!username || !email || !password) {
-                  alert("Please fill all the fields");
+                  setError("Please fill all the fields");
                   return;
                 }
+
+                if (!validateEmail(email)) {
+                  setError("Please enter the correct email");
+                  return;
+                }
+
+                if (password.length < 6) {
+                  setError("Password must be at least 6 characters");
+                  return;
+                }
+
                 try {
                   const response = await axios.post(
-                    "http://localhost:1000/api/v1/user/signup",
+                    "http://localhost:3000/api/v1/user/signup",
                     { username, email, password }
                   );
                   localStorage.setItem("token", response?.data?.token);
                   setTimeout(() => navigate("/dashboard"), 1000);
                 } catch (err) {
-                  alert("Email already exists");
+                  setError("Email already exists");
                 }
               }}
             >
@@ -93,9 +115,12 @@ const Home = () => {
 
           <p className="text-gray-500 text-center mt-6 text-sm">
             Already have an account?{" "}
-            <span className="text-violet-600 cursor-pointer hover:underline" onClick={() => {
-                navigate("/signin")
-            }}>
+            <span
+              className="text-violet-600 cursor-pointer hover:underline"
+              onClick={() => {
+                navigate("/signin");
+              }}
+            >
               Log In
             </span>
           </p>

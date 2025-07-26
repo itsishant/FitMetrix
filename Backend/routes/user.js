@@ -11,90 +11,97 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 router.use(express.json());
 
-// const signupSchema = zod.object({ 
-//     username: zod.string(),
-//     email: zod.string().email(),
-//     password: zod.string().min(6)
-// })
-
+const signupSchema = zod.object({ 
+    username: zod.string(),
+    email: zod.string().email(),
+    password: zod.string().min(6)
+});
 
 router.post("/signup", async (req, res) => {
+
+    // Validate request body
+    const validation = signupSchema.safeParse(req.body);
+    if (!validation.success) {
+        return res.status(400).json({
+            message: "Invalid input",
+            errors: validation.error.errors
+        });
+    }
 
     const { password } = req.body; 
 
     const checkEmail = await user.findOne({
         email: req.body.email
-    })
+    });
 
-    if(checkEmail){
-       return res.status(403).json({
+    if (checkEmail) {
+        return res.status(403).json({
             message: "Email already exists"
-        })
-    }else{
-
+        });
+    } else {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         await user.create({
             username: req.body.username,
             email: req.body.email,
             password: hashedPassword
-        })
+        });
 
-        const token = jwt.sign({
-            username: req.body.username
-        }, JWT_SECRET)
+        const token = jwt.sign(
+            { username: req.body.username },
+            JWT_SECRET
+        );
 
         res.json({
             message: "user created successfully",
             token: token
-        })
+        });
     }
-})
+});
 
+
+const signinSchema = zod.object({
+    email: zod.string().email(),
+    password: zod.string().min(6)
+});
 
 router.post("/signin", async (req, res) => {
 
+    // Validate request body
+    const validation = signinSchema.safeParse(req.body);
+    if (!validation.success) {
+        return res.status(400).json({
+            message: "Invalid input",
+            errors: validation.error.errors
+        });
+    }
+
     const { email, password } = req.body;
 
-    if( !email || !password){
-       return res.status(403).json({
-            message: "Email and password are required"
-        })
-    }
+    const userSignIn = await user.findOne({ email });
 
-    const userSignIn = await user.findOne({
-        email
-    })
-
-    if(userSignIn){
-
+    if (userSignIn) {
         const isPasswordValid = await bcrypt.compare(password, userSignIn.password);
 
-        if(isPasswordValid){
+        if (isPasswordValid) {
+            const token = jwt.sign(
+                { username: userSignIn.username },
+                JWT_SECRET,
+                { expiresIn: "1h" }
+            );
 
-        const token = jwt.sign(
-            {username: userSignIn.username}
-        , JWT_SECRET,
-    {expiresIn: "1h"});
+            return res.json({
+                message: "User signed in successfully",
+                token: token
+            });
+        } else {
+            return res.json({ message: "Wrong password" });
+        }
+    } else {
+        return res.json({ message: "User not found" });
+    }
+});
 
-       return res.json({
-            message: "User signed in successfully",
-            token: token
-        })
-    }
-    else{
-       return res.json({
-            message: "wrong password"
-        })
-    }
-}
-    else{
-       return res.json({
-            message: "User not founded"
-        })
-    }
-
-})
 
 router.delete("/delete/:id", authMiddleware, async (req, res) => {
 

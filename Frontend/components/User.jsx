@@ -10,17 +10,18 @@ export const User = () => {
         const fetchUser = async () => {
              try{
             const token = localStorage.getItem("token")
-            const response = await axios.get("http://localhost:1000/api/v1/user/me", {
+            const response = await axios.get("http://localhost:3000/api/v1/user/me", {
                 headers: {
                     token
                 }
             });
             const username = response?.data?.name;
-            const firstletter = username.toUpperCase();
-            setProfileName(firstletter);
+            const firstLetter = username?.[0]?.toUpperCase() || "";
+            setProfileName(firstLetter);
+
             }
             catch(error){
-                console.error("Unable to fetch the name");
+                setProfileName("");
             }
         };
 

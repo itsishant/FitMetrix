@@ -28,8 +28,6 @@ export const Workout = () => {
                   alert("Hold up! You need an account to see this")
                   navigate("/");
               }, 2000)
-          }else{
-              console.log("Token exists");
           }
       };
   
@@ -138,11 +136,16 @@ const filterWorkouts = workouts.filter((work) => {
 </div>
  */}
 
+{filterWorkouts.length === 0 ? (
+  <div className="text-center text-2xl font-Poppin text-gray-700 mt-10">
+    No workouts found 😔
+  </div>
+) : (
 <motion.div 
     initial={{ opacity:0 , y: 50 }}
     animate={{ opacity: 1, y: 10 }}
     transition={{ duration: 1.6 }}
-     className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
+    className="grid grid-cols-1 gap-6 md:grid-cols-3 justify-between p-4 ml-4">
         {filterWorkouts.map((workout, index) => (
           <motion.div 
           whileHover={{ scale: 1.02 }}
@@ -167,6 +170,9 @@ const filterWorkouts = workouts.filter((work) => {
         ))}
         
       </motion.div>
+
+)}
+      
      
 
 

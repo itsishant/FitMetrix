@@ -25,7 +25,7 @@ animate={{
 transition={{
     duration:0.2, ease:"easeInOut"
 }}
-className="fixed top-1 left-1/2 transform -translate-x-1/2 backdrop-blur-xl bg-white/40 w-[80%] z-50 flex justify-between items-center h-20 border-2 border-violet-600 rounded-full px-6">
+className="fixed top-1 left-1/2 transform -translate-x-1/2 backdrop-blur-xl bg-white/40 w-[80%] z-50 flex justify-between items-center h-20 border-2 border-violet-600 rounded-3xl px-6">
      <div className="m-6 text-5xl flex space-x-2 ">
         <p className="font-Poppin"> Fit</p> 
         <p className="text-violet-700 font-Poppin"> Metrix</p>
@@ -105,7 +105,7 @@ className="fixed top-1 left-1/2 transform -translate-x-1/2 backdrop-blur-xl bg-w
             >Logout</button>
         </div>
         <div className="fixed top-3 md:top-2 md:left-308 z-50">
-    <div className="p-4 md:p-4 bg-gray-300 border-2 border-violet-600 py-1 md:py-2 text-3xl md:text-5xl rounded-full font-Poppin shadow-lg">
+    <div className="p-4 md:p-6 bg-gray-300 border-2 border-violet-600 py-1 md:py-2 text-3xl md:text-5xl rounded-full font-Poppin shadow-lg">
         <User />
     </div>
 </div>

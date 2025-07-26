@@ -8,8 +8,8 @@ async function connectDB(){
         console.log("Connected to mongodb");
     }
     catch(err){
-        console.log("error in connecting");
-    }
+console.error("❌ Error connecting to MongoDB:", err.message);
+           }
 }
 
 connectDB();

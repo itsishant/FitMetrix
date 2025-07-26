@@ -20,8 +20,6 @@ const Dashboard = () => {
                 alert("Hold up! You need an account to see this")
                 navigate("/");
             }, 2000)
-        }else{
-            console.log("Token exists");
         }
     };
 

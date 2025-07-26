@@ -6,6 +6,6 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/v1", mainRouter);
 
-app.listen(1000, () => {
-    console.log("Port Running at 1000")
+app.listen(process.env.PORT , () => {
+    console.log("Port Running at 3000")
 })
