@@ -4,7 +4,7 @@ import { AppBar } from '../components/AppBar';
 import { useState, useEffect } from 'react';
 import { workouts } from '../src/assets/workoutData';
 import { SeachBar } from '../components/SearchBar';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { toUpperCase } from 'zod/v4';
 import { steps } from '../src/assets/Details';
 import { useLocation } from 'react-router-dom';

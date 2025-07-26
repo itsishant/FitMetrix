@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import API from "../src/axios";
 
 const Signin = () => {
