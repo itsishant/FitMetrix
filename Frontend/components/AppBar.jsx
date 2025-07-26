@@ -1,9 +1,6 @@
-
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { nav } from "motion/react-client";
-import { set } from "mongoose";
 import { User } from "./User";
 
 export const AppBar = () => {
