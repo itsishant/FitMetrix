@@ -52,7 +52,7 @@ export const PhotoDashboard = () => {
                 {/* Text Content */}
                 <motion.div
                 
-                initial={{opacity:1, scale:0.98}}
+                initial={{opacity:0, scale:0.98}}
                 animate={{opacity:1, scale:1.05 }}
                 transition={{duration:0.6, ease:"easeInOut"}}
                 className="flex-1 mt-6 sm:mt-8 text-center"
