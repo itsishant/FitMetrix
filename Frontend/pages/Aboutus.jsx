@@ -19,7 +19,7 @@ export const AboutUs = () => {
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="flex-1 flex flex-col justify-center">
             
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-violet-700 mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-center md:text-left">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-Poppin text-violet-700 mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-center md:text-left">
               About FitMetrix
             </h1>
             
