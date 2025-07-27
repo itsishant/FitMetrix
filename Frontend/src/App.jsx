@@ -9,10 +9,10 @@ import Signin from "../pages/Signin";
 
 function App() {
 
-
+// hidden md:block lg:block xl:block
 
   return (
-    <div className="hidden md:block lg:block xl:block">
+    <div className="">
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
