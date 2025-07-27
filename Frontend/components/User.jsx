@@ -22,7 +22,7 @@ export const User = () => {
 
             }
             catch(error){
-                setProfileName("");
+                setProfileName();
             }
         };
 

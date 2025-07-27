@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import {motion} from "framer-motion";
 
 export const Bottom = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export const Bottom = () => {
     <div className="flex flex-col">
       {/* Desktop/Laptop Version - Exact Original */}
       <div className="hidden lg:block">
-        <div className="flex flex-wrap justify-center gap-10 p-6">
+        <motion.div className="flex flex-wrap justify-center gap-10 p-6">
           <div className="relative w-[730px] h-[500px]">
             <img
               src="bicep.jpeg"
@@ -38,14 +39,19 @@ export const Bottom = () => {
               Cardio Training
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Mobile/Tablet Version - Responsive */}
       <div className="lg:hidden">
         <div className="flex flex-col items-center gap-6 p-4 sm:p-6">
           {/* Bicep Workout Card */}
-          <div className="relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] h-[250px] sm:h-[300px] md:h-[350px]">
+          <motion.div
+        initial={{opacity:0, y:6}}
+        whileInView={{opacity:1, y:0}}
+        onScroll={{opacity:1, y:0}}
+         viewport={{ once: true, amount: 0.2 }}
+        transition={{duration: 0.4, ease:"easeInOut"}} className="relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] h-[250px] sm:h-[300px] md:h-[350px]">
             <img
               src="bicep.jpeg"
               className="w-full h-full object-cover opacity-90 rounded-3xl sm:rounded-4xl"
@@ -57,10 +63,17 @@ export const Bottom = () => {
             >
               Bicep Workouts
             </button>
-          </div>
+          </motion.div>
           
           {/* Cardio Training Card */}
-          <div className="relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] h-[250px] sm:h-[300px] md:h-[350px]">
+          <motion.div
+          
+        initial={{opacity:0, y:6}}
+        whileInView={{opacity:1, y:0}}
+        onScroll={{opacity:1, y:0}}
+         viewport={{ once: true, amount: 0.2 }}
+        transition={{duration: 0.4, ease:"easeInOut"}}
+         className="relative w-full max-w-[350px] sm:max-w-[450px] md:max-w-[550px] h-[250px] sm:h-[300px] md:h-[350px]">
             <img
               src="run.jpeg"
               className="w-full h-full object-cover opacity-90 rounded-3xl sm:rounded-4xl"
@@ -72,7 +85,7 @@ export const Bottom = () => {
             >
               Cardio Training
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 

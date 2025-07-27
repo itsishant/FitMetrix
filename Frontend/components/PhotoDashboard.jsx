@@ -1,11 +1,13 @@
 import Typewriter from "typewriter-effect";
+import { motion } from "framer-motion";
 
 export const PhotoDashboard = () => {
     return (
         <>
             {/* Desktop/Laptop Version - Exact Original */}
             <div className="hidden lg:flex bg-gradient-to-r from-slate-300 to-slate-300 min-h-screen mt-18 px-5">
-                <div className="flex-1 mt-10"
+                <motion.div 
+                className="flex-1 mt-10"
                     style={{
                         animation: "slideLeft 1.4s ease-out forwards",
                         opacity: 0,
@@ -29,7 +31,7 @@ export const PhotoDashboard = () => {
                             />
                         </p>
                     </h1>
-                </div>
+                </motion.div>
                 <div className="mr-10"
                     style={{
                         animation: "slideRight 1.4s ease-out forwards",
@@ -48,12 +50,13 @@ export const PhotoDashboard = () => {
             {/* Mobile/Tablet Version - Responsive */}
             <div className="lg:hidden flex flex-col bg-gradient-to-r from-slate-300 to-slate-300 min-h-screen mt-16 sm:mt-18 px-4 sm:px-6">
                 {/* Text Content */}
-                <div className="flex-1 mt-6 sm:mt-8 text-center"
-                    style={{
-                        animation: "slideLeft 1.4s ease-out forwards",
-                        opacity: 0,
-                        transform: "translate(-100%)"
-                    }}>
+                <motion.div
+                
+                initial={{opacity:1, scale:0.98}}
+                animate={{opacity:1, scale:1.05 }}
+                transition={{duration:0.6, ease:"easeInOut"}}
+                className="flex-1 mt-6 sm:mt-8 text-center"
+                    >
                     
                     <h1 className="text-neutral-500 text-3xl sm:text-3xl md:text-4xl font-Poppin mt-8 sm:mt-12">
                         Your Fitness Journey
@@ -81,15 +84,15 @@ export const PhotoDashboard = () => {
                             />
                         </p>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Image Section - Enhanced for mobile */}
-                <div className="flex justify-center mt-8 sm:mt-12 pb-8"
-                    style={{
-                        animation: "slideRight 1.4s ease-out forwards",
-                        opacity: 0,
-                        transform: "translate(100%)"
-                    }}>
+                <motion.div
+                initial={{opacity:0, y:8}}
+                animate={{opacity:1, y:0}}
+                transition={{duration:0.8, ease:"easeInOut"}}
+                className="flex justify-center mt-8 sm:mt-12 pb-8"
+                    >
                     <div className="relative">
                         <img
                             src="BAKI HANMA.jpeg"
@@ -103,7 +106,7 @@ export const PhotoDashboard = () => {
                         {/* Glow effect for mobile */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-400/20 to-purple-600/20 blur-xl -z-10"></div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </>
     );
