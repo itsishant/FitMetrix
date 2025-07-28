@@ -8,6 +8,7 @@ const { JWT_SECRET } = require("../config");
 const  authMiddleware  = require("../middleware");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { lockEmail, unlockEmail } = require("../lock");
 const router = express.Router();
 router.use(express.json());
 
@@ -28,13 +29,22 @@ router.post("/signup", async (req, res) => {
         });
     }
 
-    const { password } = req.body; 
+    const { email, password } = req.body; 
+
+    const lockKey = lockEmail(email);
+
+    if(!lockKey){
+        return res.status(409).json({
+            message: "This email is currently being registered. Try again shortly"
+        })
+    }
 
     const checkEmail = await user.findOne({
         email: req.body.email
     });
 
     if (checkEmail) {
+        unlockEmail(email, lockKey)
         return res.status(403).json({
             message: "Email already exists"
         });
@@ -43,9 +53,11 @@ router.post("/signup", async (req, res) => {
 
         await user.create({
             username: req.body.username,
-            email: req.body.email,
+            email,
             password: hashedPassword
         });
+
+        unlockEmail(email, lockKey);
 
         const token = jwt.sign(
             { username: req.body.username },
