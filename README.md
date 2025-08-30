@@ -178,7 +178,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Contact
 - **Author**: Ishant
 - **GitHub**: [@itsishant](https://github.com/itsishant)
-- **Email**: [Your Email]
 
 ## Acknowledgments
 - Thanks to all contributors who have helped with this project
